@@ -1,6 +1,5 @@
 "use client";
 
-import ContactForm from "./ContactForm";
 import { usePortfolioFX } from "./usePortfolioFX";
 
 const FONT_SPACE = "'Space Grotesk',sans-serif";
@@ -375,23 +374,6 @@ export default function Portfolio() {
           >
             Works
           </a>
-          <a
-            href="#contact"
-            data-magnetic
-            style={{
-              textDecoration: "none",
-              color: "#fff",
-              fontSize: "14px",
-              fontWeight: 600,
-              padding: "9px 18px",
-              borderRadius: "999px",
-              background: "linear-gradient(135deg,#4a443d,#1a1815)",
-              boxShadow: "0 8px 20px -6px rgba(26,24,21,0.5)",
-              willChange: "transform",
-            }}
-          >
-            お問い合わせ
-          </a>
         </div>
       </nav>
 
@@ -496,21 +478,6 @@ export default function Portfolio() {
                 }}
               >
                 制作物を見る →
-              </a>
-              <a
-                href="#contact"
-                style={{
-                  textDecoration: "none",
-                  color: "#1a1815",
-                  fontSize: "15px",
-                  fontWeight: 600,
-                  padding: "14px 28px",
-                  borderRadius: "999px",
-                  background: "rgba(255,255,255,0.55)",
-                  border: "1px solid rgba(26,24,21,0.1)",
-                }}
-              >
-                お問い合わせ
               </a>
             </div>
           </div>
@@ -1704,48 +1671,6 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* CONTACT */}
-      <section
-        id="contact"
-        style={{
-          position: "relative",
-          zIndex: 2,
-          maxWidth: "760px",
-          margin: "0 auto",
-          padding: "clamp(50px,8vw,110px) clamp(20px,5vw,56px)",
-          scrollMarginTop: "70px",
-        }}
-      >
-        <div
-          data-reveal
-          style={{ textAlign: "center", marginBottom: "40px" }}
-        >
-          <span style={sectionIndex}>04</span>
-          <h2
-            style={{
-              margin: "8px 0 12px",
-              fontFamily: FONT_ZEN,
-              fontWeight: 900,
-              fontSize: "clamp(28px,4.4vw,48px)",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            一緒に何か、作りませんか？
-          </h2>
-          <p
-            style={{
-              margin: 0,
-              color: "#6a655c",
-              fontSize: "15px",
-              lineHeight: 1.8,
-            }}
-          >
-            お仕事のご相談・ご依頼はこちらから。お気軽にどうぞ。
-          </p>
-        </div>
-        <ContactForm />
       </section>
 
       {/* FOOTER */}
