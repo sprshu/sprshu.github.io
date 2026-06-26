@@ -1,26 +1,14 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600"],
-});
-
 export const metadata: Metadata = {
-  title: "TAISHU TANABE | Web Developer Portfolio",
+  title: "shubert | Web Developer Portfolio",
   description:
-    "フロントエンドエンジニア田中大輝のポートフォリオ。HTML/CSS/JavaScript/Next.jsを用いたWeb制作の実績を掲載。",
+    "Web Developer shubert のポートフォリオ。React・Next.js・TypeScript を中心としたWeb制作・個人開発の実績を掲載。お仕事のご相談を承っています。",
   openGraph: {
-    title: "TAISHU TANABE | Web Developer Portfolio",
-    description: "フロントエンドエンジニア田中大輝のポートフォリオ",
+    title: "shubert | Web Developer Portfolio",
+    description:
+      "React・Next.js・TypeScript を中心としたWeb制作・個人開発のポートフォリオ",
     type: "website",
   },
 };
@@ -31,11 +19,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ja"
-      className={`${spaceGrotesk.variable} ${inter.variable}`}
-      style={{ fontFamily: "var(--font-body), sans-serif" }}
-    >
+    <html lang="ja">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
