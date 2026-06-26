@@ -1457,6 +1457,188 @@ export default function Portfolio() {
               </div>
             </div>
           </a>
+
+          {/* Build-C */}
+          <a
+            href="https://build-c.com/"
+            target="_blank"
+            rel="noopener"
+            data-reveal
+            className="work-card"
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              display: "flex",
+              flexDirection: "column",
+              borderRadius: "22px",
+              overflow: "hidden",
+              background: "rgba(255,255,255,0.55)",
+              backdropFilter: "blur(14px)",
+              WebkitBackdropFilter: "blur(14px)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              boxShadow: "0 18px 50px -26px rgba(40,36,32,0.4)",
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                aspectRatio: "16/10",
+                background: "linear-gradient(150deg,#0a0f1c,#111a2e)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  padding: "10px 12px",
+                  borderBottom: "1px solid rgba(125,211,252,0.12)",
+                }}
+              >
+                {[0.5, 0.32, 0.22].map((o, i) => (
+                  <span
+                    key={i}
+                    style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      background: `rgba(125,211,252,${o})`,
+                    }}
+                  />
+                ))}
+                <span
+                  style={{
+                    marginLeft: "8px",
+                    fontFamily: "'Space Grotesk',monospace",
+                    fontSize: "10px",
+                    color: "rgba(125,211,252,0.55)",
+                    letterSpacing: ".04em",
+                  }}
+                >
+                  build-c — zsh
+                </span>
+              </div>
+              <div
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "0 22px 16px",
+                  fontFamily: "'Space Grotesk',monospace",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "#7dd3fc",
+                    letterSpacing: ".02em",
+                  }}
+                >
+                  $ build-c --init
+                </div>
+                <div
+                  style={{
+                    fontFamily: FONT_ZEN,
+                    fontWeight: 900,
+                    fontSize: "clamp(18px,3vw,24px)",
+                    color: "#fff",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  第3のプレーヤーとして、
+                  <br />
+                  未来を構築する。
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    fontSize: "11px",
+                    color: "rgba(226,232,240,0.7)",
+                    letterSpacing: ".06em",
+                  }}
+                >
+                  City · Community · Code · Connect
+                  <span
+                    style={{
+                      display: "inline-block",
+                      width: "8px",
+                      height: "14px",
+                      background: "#7dd3fc",
+                      animation: "blink 1s steps(1) infinite",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: "20px 22px 22px" }}>
+              <div
+                style={{
+                  fontFamily: FONT_SPACE,
+                  fontSize: "11px",
+                  letterSpacing: ".06em",
+                  color: "#9a948c",
+                  marginBottom: "7px",
+                }}
+              >
+                コーポレートサイト / 実案件
+              </div>
+              <h3
+                style={{
+                  margin: "0 0 9px",
+                  fontFamily: FONT_ZEN,
+                  fontWeight: 900,
+                  fontSize: "19px",
+                }}
+              >
+                Build-C
+              </h3>
+              <p
+                style={{
+                  margin: "0 0 14px",
+                  fontSize: "13px",
+                  lineHeight: 1.8,
+                  color: "#5a554d",
+                }}
+              >
+                テクノロジー・イノベーション企業のコーポレートサイト。ターミナル調の未来的なデザインで、ブランドの世界観と「構築する」という姿勢を表現。
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  paddingTop: "13px",
+                  borderTop: "1px solid rgba(26,24,21,0.08)",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "11.5px",
+                    color: "#8a857c",
+                    fontWeight: 600,
+                  }}
+                >
+                  WordPress · PHP
+                </span>
+                <span
+                  style={{
+                    fontFamily: FONT_SPACE,
+                    fontSize: "12px",
+                    fontWeight: 600,
+                    color: "#1a1815",
+                  }}
+                >
+                  サイトを見る →
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
 
         {/* Poker Memo */}
