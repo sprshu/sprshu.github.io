@@ -670,6 +670,9 @@ export default function Portfolio() {
                 style={{ display: "flex", flexWrap: "wrap", gap: "9px" }}
               >
                 {[
+                  "認知能力が高い",
+                  "雑談力に自信あり",
+                  "講師経験あり",
                   "行動が速い",
                   "学習速度が速い",
                   "AI活用に抵抗がない",
