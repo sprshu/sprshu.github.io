@@ -1665,7 +1665,7 @@ export default function Portfolio() {
           <div
             style={{
               position: "relative",
-              minHeight: "300px",
+              minHeight: "380px",
               background:
                 "repeating-linear-gradient(135deg,rgba(70,64,58,0.14) 0 14px,rgba(70,64,58,0.06) 14px 28px)",
               display: "flex",
@@ -1673,19 +1673,21 @@ export default function Portfolio() {
               justifyContent: "center",
             }}
           >
-            <span
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/pokermemodb-stats.png"
+              alt="Poker Memo DB 統計画面（累積損益グラフ）のスクリーンショット"
               style={{
-                fontFamily: "'Space Grotesk',monospace",
-                fontSize: "12px",
-                color: "#6a655c",
-                letterSpacing: ".06em",
-                padding: "8px 14px",
-                borderRadius: "8px",
-                background: "rgba(255,255,255,0.7)",
+                position: "absolute",
+                inset: 0,
+                margin: "auto",
+                maxHeight: "88%",
+                maxWidth: "80%",
+                objectFit: "contain",
+                borderRadius: "16px",
+                boxShadow: "0 24px 60px -22px rgba(0,0,0,0.45)",
               }}
-            >
-              app screenshot
-            </span>
+            />
           </div>
           <div style={{ padding: "clamp(24px,3.5vw,40px)" }}>
             <div
@@ -1704,7 +1706,7 @@ export default function Portfolio() {
                   fontSize: "clamp(22px,3vw,30px)",
                 }}
               >
-                Poker Memo
+                Poker Memo DB
               </h3>
               <span
                 style={{
@@ -1727,7 +1729,7 @@ export default function Portfolio() {
                     background: "#22c55e",
                   }}
                 />
-                開発中
+                App Store公開中
               </span>
             </div>
             <p
@@ -1738,7 +1740,8 @@ export default function Portfolio() {
                 color: "#5a554d",
               }}
             >
-              ポーカーのハンド履歴を記録・分析するためのサービス。GTO判定より「記録」を優先し、自分専用のポーカーデータベースを作ります。後から検索・分析できることを重視し、将来的には AI によるプレイ傾向分析も検討。
+              ポーカーのハンド・収支を記録するiOSアプリ。アクションを入力するだけで損益と勝敗を自動算出し、セッションカレンダーと累積損益グラフで成長を振り返れます。設計から実装、App
+              Store申請・公開までを個人で完遂した第1作（2026年7月リリース）。
             </p>
             <div
               style={{
@@ -1748,46 +1751,69 @@ export default function Portfolio() {
                 marginBottom: "18px",
               }}
             >
-              {["入力速度", "記録のしやすさ", "検索性", "データ蓄積", "統計分析"].map(
-                (t) => (
-                  <span key={t} style={pokerTag}>
-                    {t}
-                  </span>
-                )
-              )}
+              {[
+                "損益・勝敗の自動計算",
+                "セッションカレンダー",
+                "累積損益グラフ",
+                "ライト/ダーク×3テーマ",
+              ].map((t) => (
+                <span key={t} style={pokerTag}>
+                  {t}
+                </span>
+              ))}
             </div>
             <div
               style={{
                 display: "flex",
-                gap: "8px",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "12px",
                 flexWrap: "wrap",
                 paddingTop: "16px",
                 borderTop: "1px solid rgba(26,24,21,0.08)",
               }}
             >
-              {["React Native", "Expo", "Supabase"].map((s, i, arr) => (
-                <span
-                  key={s}
-                  style={{
-                    display: "flex",
-                    gap: "8px",
-                    alignItems: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      color: "#8a857c",
-                      fontWeight: 600,
-                    }}
-                  >
-                    {s}
-                  </span>
-                  {i < arr.length - 1 && (
-                    <span style={{ color: "#d8c4b0" }}>·</span>
-                  )}
-                </span>
-              ))}
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                {["React Native", "Expo", "TypeScript", "Supabase"].map(
+                  (s, i, arr) => (
+                    <span
+                      key={s}
+                      style={{
+                        display: "flex",
+                        gap: "8px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "12px",
+                          color: "#8a857c",
+                          fontWeight: 600,
+                        }}
+                      >
+                        {s}
+                      </span>
+                      {i < arr.length - 1 && (
+                        <span style={{ color: "#d8c4b0" }}>·</span>
+                      )}
+                    </span>
+                  )
+                )}
+              </div>
+              <a
+                href="https://apps.apple.com/jp/app/pokermemodb/id6784554500"
+                target="_blank"
+                rel="noopener"
+                style={{
+                  textDecoration: "none",
+                  fontFamily: FONT_SPACE,
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  color: "#1a1815",
+                }}
+              >
+                App Storeで見る →
+              </a>
             </div>
           </div>
         </div>
@@ -1914,7 +1940,9 @@ export default function Portfolio() {
             GitHub
           </a>
           <a
-            href="#"
+            href="https://x.com/shubertWithYou"
+            target="_blank"
+            rel="noopener"
             style={{
               textDecoration: "none",
               color: "#6a655c",
