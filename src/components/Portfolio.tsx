@@ -301,24 +301,17 @@ export default function Portfolio() {
             color: "#1a1815",
           }}
         >
-          <span
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-mark.png"
+            alt="shubert ロゴ"
             style={{
               width: "30px",
               height: "30px",
               borderRadius: "9px",
-              background: "linear-gradient(135deg,#4a443d,#1a1815)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontFamily: FONT_SPACE,
-              fontWeight: 700,
-              fontSize: "15px",
               boxShadow: "0 6px 16px -4px rgba(26,24,21,0.6)",
             }}
-          >
-            S
-          </span>
+          />
           <span
             style={{
               fontFamily: FONT_SPACE,
@@ -1901,23 +1894,16 @@ export default function Portfolio() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <span
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-mark.png"
+            alt="shubert ロゴ"
             style={{
               width: "26px",
               height: "26px",
               borderRadius: "8px",
-              background: "linear-gradient(135deg,#4a443d,#1a1815)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontFamily: FONT_SPACE,
-              fontWeight: 700,
-              fontSize: "13px",
             }}
-          >
-            S
-          </span>
+          />
           <span
             style={{ fontFamily: FONT_SPACE, fontWeight: 700, fontSize: "14px" }}
           >
