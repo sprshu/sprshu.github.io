@@ -22,7 +22,7 @@ export default function Contact() {
           className="contact-cta"
           data-reveal
           data-magnetic
-          href="https://x.com/shubertWithYou"
+          href="https://x.com/bertWithYou"
           target="_blank"
           rel="noopener"
         >
@@ -40,7 +40,7 @@ export default function Contact() {
           </a>
           <a
             className="contact-link"
-            href="https://x.com/shubertWithYou"
+            href="https://x.com/bertWithYou"
             target="_blank"
             rel="noopener"
           >
