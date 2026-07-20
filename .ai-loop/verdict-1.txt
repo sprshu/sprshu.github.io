@@ -1,0 +1,21 @@
+レビュー完了です。受け入れ条件をすべて実測で確認しました。
+
+## レビュー結果
+
+**受け入れ条件との突き合わせ（全項目クリア）**
+
+1. `src/app/sitemap.ts` — 追加済み。ビルド成果物 `out/sitemap.xml` を実際に確認し、`https://sprshu.github.io/` の1エントリのみが含まれることを確認した（`trailingSlash: true` とも整合）
+2. `src/app/robots.ts` — 追加済み。`out/robots.txt` に `User-Agent: *` / `Allow: /` / `Sitemap: https://sprshu.github.io/sitemap.xml` が含まれることを確認した
+3. `SITE_URL` — `src/lib/base.ts:4` に1箇所だけ定義され、両ファイルが `@/lib/base` から参照。直書きなし。既存の export 形式（named export・ダブルクォート・セミコロン）とも一致
+4. ビルド — `out/sitemap.xml` と `out/robots.txt` が実装コミット（19:29:58）と同時刻のビルドで生成されており、`npm run build` の成功と成果物生成を確認できた
+5. 実装は `node_modules/next/dist/docs/.../01-metadata/` の sitemap.md / robots.md に記載されたこのバージョンの API（`MetadataRoute.Sitemap` / `MetadataRoute.Robots`、default export）と完全に一致。`export const dynamic = "force-static"` は `output: "export"` 環境で適切
+
+**スコープ**: 実装コミット（6fbbbb1）が触ったのは許可された3ファイルのみ。逸脱なし。
+
+**RLS・認証**: 本変更に認証・アクセス制御は含まれない（公開静的ファイルの生成のみ）。検証対象なし。
+
+**補足（軽微・修正不要）**
+- `npm run lint` は本レビュー環境の許可ツール制約で実行できなかったため静的に確認した。追加28行に eslint-config-next（core-web-vitals / typescript）で引っかかる要素はない（未使用変数なし、`import type` 使用、規約一致）
+- ビルド通過≠完成の原則に基づく実機確認（マージ・デプロイ後、人間の作業）: ①`https://sprshu.github.io/sitemap.xml` と `https://sprshu.github.io/robots.txt` がブラウザで200で開けること ②Google Search Console に sitemap を送信してエラーがないこと
+
+APPROVED

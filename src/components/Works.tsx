@@ -1,7 +1,8 @@
 import SplitChars from "./SplitChars";
+import FeaturedPokerMemo from "./FeaturedPokerMemo";
 import { asset } from "@/lib/base";
 
-const CARDS = [
+const WEB_CARDS = [
   {
     media: "media-buildc",
     mediaEyebrow: "$ build-c --init",
@@ -60,6 +61,60 @@ const CARDS = [
   },
 ];
 
+// 5ジャンル同時開発したiOSアプリのMVP群（2026年7月・ローカルファースト設計）
+const APP_CARDS = [
+  {
+    media: "media-habitkit",
+    shot: "/works/habitkit.png",
+    shotAlt: "HabitKit 習慣追加画面のスクリーンショット",
+    index: "06",
+    category: "iOS App / 習慣化",
+    title: "HabitKit",
+    desc: "毎日の習慣をワンタップでチェックし、ストリーク（連続日数）と週間グリッドで継続を可視化する習慣トラッカー。",
+    stack: "React Native · Expo · TypeScript",
+  },
+  {
+    media: "media-kakeipocket",
+    shot: "/works/kakeipocket.png",
+    shotAlt: "KakeiPocket 月別集計画面のスクリーンショット",
+    index: "07",
+    category: "iOS App / 家計簿",
+    title: "KakeiPocket",
+    desc: "支出をすばやく登録し、月合計とカテゴリ別の内訳バーで家計を一目で把握できるシンプル家計簿。金額のライブカンマ整形など入力UXにこだわり。",
+    stack: "React Native · Expo · TypeScript",
+  },
+  {
+    media: "media-flashdeck",
+    shot: "/works/flashdeck.png",
+    shotAlt: "FlashDeck デッキ一覧画面のスクリーンショット",
+    index: "08",
+    category: "iOS App / 学習",
+    title: "FlashDeck",
+    desc: "暗記カードのデッキを作り、フリップアニメーションと「わかった/まだ」の仕分けで一周学習できる暗記アプリ。",
+    stack: "React Native · Expo · Reanimated",
+  },
+  {
+    media: "media-soranow",
+    shot: "/works/soranow.png",
+    shotAlt: "SoraNow 現在地の天気と7日間予報のスクリーンショット",
+    index: "09",
+    category: "iOS App / 天気・API連携",
+    title: "SoraNow",
+    desc: "現在地の実況と7日間予報をシンプルに表示する天気アプリ。Open-Meteo APIとの連携・位置情報・オフラインキャッシュに対応。",
+    stack: "React Native · Expo · Open-Meteo API",
+  },
+  {
+    media: "media-pairpop",
+    shot: "/works/pairpop.png",
+    shotAlt: "PairPop 神経衰弱ゲーム画面のスクリーンショット",
+    index: "10",
+    category: "iOS App / ゲーム",
+    title: "PairPop",
+    desc: "絵文字の神経衰弱で遊べるミニゲーム。手数・タイムの計測、ベスト記録の保存、めくりアニメーションを実装。",
+    stack: "React Native · Expo · Reanimated",
+  },
+];
+
 export default function Works() {
   return (
     <section className="section" id="works">
@@ -74,60 +129,10 @@ export default function Works() {
           <span className="section-title-ja mono-label">制作実績</span>
         </div>
 
-        {/* Featured: PokerMemoDB */}
-        <a
-          className="work-featured"
-          data-reveal
-          href="https://apps.apple.com/jp/app/pokermemodb/id6784554500"
-          target="_blank"
-          rel="noopener"
-        >
-          <div className="work-featured-body">
-            <span className="mono-label">01 — iOS App / 個人開発</span>
-            <div className="work-featured-title-row">
-              <h3 className="work-featured-title">Poker Memo DB</h3>
-              <span className="work-live-pill">
-                <i />
-                App Store公開中
-              </span>
-            </div>
-            <p>
-              ポーカーのハンド・収支を記録するiOSアプリ。アクションを入力するだけで損益と勝敗を自動算出し、セッションカレンダーと累積損益グラフで成長を振り返れます。設計から実装、App
-              Store申請・公開までを個人で完遂した第1作（2026年7月リリース）。
-            </p>
-            <div className="work-tag-row">
-              {[
-                "損益・勝敗の自動計算",
-                "セッションカレンダー",
-                "累積損益グラフ",
-                "ハンドのシェア画像",
-              ].map((t) => (
-                <span key={t} className="work-tag">
-                  {t}
-                </span>
-              ))}
-            </div>
-            <div className="work-featured-foot">
-              <span className="work-stack" style={{ color: "#9a9aa2" }}>
-                React Native · Expo · TypeScript · Supabase
-              </span>
-              <span className="work-arrow" style={{ color: "#fafafa" }}>
-                App Storeで見る →
-              </span>
-            </div>
-          </div>
-          <div className="work-featured-media">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="featured-shot"
-              src={asset("/pokermemodb-stats.png")}
-              alt="Poker Memo DB 統計画面（累積損益グラフ）のスクリーンショット"
-            />
-          </div>
-        </a>
+        <FeaturedPokerMemo />
 
         <div className="work-grid">
-          {CARDS.map((c) => (
+          {WEB_CARDS.map((c) => (
             <a
               key={c.title}
               className="work-card"
@@ -164,6 +169,28 @@ export default function Works() {
                 </div>
               </div>
             </a>
+          ))}
+
+          {APP_CARDS.map((c) => (
+            <div key={c.title} className="work-card" data-reveal>
+              <div className={`work-media work-media--shot ${c.media}`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="app-shot" src={asset(c.shot)} alt={c.shotAlt} />
+              </div>
+              <div className="work-body">
+                <div className="work-meta">
+                  <span className="mono-label">
+                    {c.index} — {c.category}
+                  </span>
+                </div>
+                <h3 className="work-title">{c.title}</h3>
+                <p className="work-desc">{c.desc}</p>
+                <div className="work-foot">
+                  <span className="work-stack">{c.stack}</span>
+                  <span className="work-mvp-pill">MVP 2026.07</span>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 
