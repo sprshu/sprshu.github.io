@@ -1,7 +1,7 @@
 import Preloader from "@/components/Preloader";
 import SiteNav from "@/components/SiteNav";
 import Hero from "@/components/Hero";
-import Works from "@/components/Works";
+import WorksTeaser from "@/components/WorksTeaser";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
@@ -15,7 +15,7 @@ export default function Home() {
       <SiteNav />
       <main>
         <Hero />
-        <Works />
+        <WorksTeaser />
         <About />
         <Skills />
         <Contact />

@@ -28,16 +28,32 @@ export default function FXRoot() {
 
     const removers: (() => void)[] = [];
 
+    // プリローダーはトップページのみ。サブページ（/works等）ではイントロを省略する
+    const hasIntro = !!document.getElementById("preloader");
+
     const ctx = gsap.context(() => {
       /* ---------- 初期状態 ---------- */
+      gsap.set(".site-nav", { autoAlpha: 0, y: -18 });
+      gsap.set("[data-reveal]", { autoAlpha: 0, y: 44 });
+
+      if (!hasIntro) {
+        gsap.to(".site-nav", {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          delay: 0.1,
+        });
+        lenis.start();
+      }
+
+      if (hasIntro) {
       gsap.set(".hero-title .split-char", { yPercent: 120 });
       gsap.set(".hero-eyebrow, .hero-lead, .hero-scroll", {
         autoAlpha: 0,
         y: 26,
       });
       gsap.set(".hero-shape", { autoAlpha: 0, scale: 0.5 });
-      gsap.set(".site-nav", { autoAlpha: 0, y: -18 });
-      gsap.set("[data-reveal]", { autoAlpha: 0, y: 44 });
 
       /* ---------- プリローダー: %カウンター + リング → ヒーロー開幕 ---------- */
       const ring = document.getElementById(
@@ -164,6 +180,7 @@ export default function FXRoot() {
           scrub: true,
         },
       });
+      } // hasIntro（プリローダー・ヒーロー関連はトップページのみ）
 
       /* ---------- 見出しの文字分割リベール ---------- */
       gsap.utils
