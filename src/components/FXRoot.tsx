@@ -36,7 +36,142 @@ export default function FXRoot() {
       gsap.set(".site-nav", { autoAlpha: 0, y: -18 });
       gsap.set("[data-reveal]", { autoAlpha: 0, y: 44 });
 
-      if (!hasIntro) {
+      // トップページのみ: プリローダー→ヒーロー開幕と、ヒーロー装飾アニメ
+      if (hasIntro) {
+        gsap.set(".hero-title .split-char", { yPercent: 120 });
+        gsap.set(".hero-eyebrow, .hero-lead, .hero-scroll", {
+          autoAlpha: 0,
+          y: 26,
+        });
+        gsap.set(".hero-shape", { autoAlpha: 0, scale: 0.5 });
+
+        /* ---------- プリローダー: %カウンター + リング → ヒーロー開幕 ---------- */
+        const ring = document.getElementById(
+          "preloader-ring-fg"
+        ) as unknown as SVGCircleElement | null;
+        const count = document.getElementById("preloader-count");
+        const CIRC = 2 * Math.PI * 54;
+        if (ring) {
+          ring.style.strokeDasharray = `${CIRC}`;
+          ring.style.strokeDashoffset = `${CIRC}`;
+        }
+        const prog = { v: 0 };
+        gsap
+          .timeline({ onComplete: () => lenis.start() })
+          .to(prog, {
+            v: 100,
+            duration: 1.7,
+            ease: "power2.inOut",
+            onUpdate: () => {
+              if (count)
+                count.textContent = String(Math.round(prog.v)).padStart(3, "0");
+              if (ring)
+                ring.style.strokeDashoffset = String(CIRC * (1 - prog.v / 100));
+            },
+          })
+          .to(
+            "#preloader-inner",
+            { autoAlpha: 0, scale: 0.9, duration: 0.35, ease: "power2.in" },
+            "+=0.1"
+          )
+          .to(
+            "#preloader",
+            { yPercent: -100, duration: 0.85, ease: "power4.inOut" },
+            "<0.15"
+          )
+          .set("#preloader", { display: "none" })
+          .to(
+            ".site-nav",
+            { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" },
+            "-=0.5"
+          )
+          .to(
+            ".hero-title .split-char",
+            {
+              yPercent: 0,
+              duration: 1.05,
+              ease: "power4.out",
+              stagger: 0.05,
+            },
+            "-=0.75"
+          )
+          .to(
+            ".hero-eyebrow",
+            { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
+            "-=0.9"
+          )
+          .to(
+            ".hero-lead",
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.7,
+              ease: "power3.out",
+              stagger: 0.09,
+            },
+            "-=0.6"
+          )
+          .to(
+            ".hero-shape",
+            {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.9,
+              ease: "back.out(1.7)",
+              stagger: 0.07,
+            },
+            "-=0.8"
+          )
+          .to(".hero-scroll", { autoAlpha: 1, y: 0, duration: 0.6 }, "-=0.4");
+
+        /* ---------- 浮遊シェイプ（内側）: ゆっくり漂う ---------- */
+        gsap.utils.toArray<HTMLElement>(".hero-shape").forEach((el, i) => {
+          gsap.to(el, {
+            y: () => gsap.utils.random(-30, 30),
+            x: () => gsap.utils.random(-22, 22),
+            rotation: () => gsap.utils.random(-16, 16),
+            duration: gsap.utils.random(3.2, 5.4),
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            repeatRefresh: true,
+            delay: i * 0.25,
+          });
+        });
+
+        /* ---------- マウスパララックス（外側ラッパー） ---------- */
+        const wraps = gsap.utils
+          .toArray<HTMLElement>(".hero-shape-wrap")
+          .map((el) => ({
+            depth: parseFloat(el.dataset.depth ?? "0.08"),
+            qx: gsap.quickTo(el, "x", { duration: 0.9, ease: "power3.out" }),
+            qy: gsap.quickTo(el, "y", { duration: 0.9, ease: "power3.out" }),
+          }));
+        const onMouse = (e: MouseEvent) => {
+          const dx = e.clientX - window.innerWidth / 2;
+          const dy = e.clientY - window.innerHeight / 2;
+          for (const w of wraps) {
+            w.qx(dx * w.depth);
+            w.qy(dy * w.depth);
+          }
+        };
+        window.addEventListener("mousemove", onMouse, { passive: true });
+        removers.push(() => window.removeEventListener("mousemove", onMouse));
+
+        /* ---------- ヒーローのスクロールアウト ---------- */
+        gsap.to(".hero-title", {
+          yPercent: -14,
+          autoAlpha: 0.25,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      } else {
+        // サブページ（プリローダー無し）: ナビを出してスクロールを解禁するだけ
         gsap.to(".site-nav", {
           autoAlpha: 1,
           y: 0,
@@ -46,141 +181,6 @@ export default function FXRoot() {
         });
         lenis.start();
       }
-
-      if (hasIntro) {
-      gsap.set(".hero-title .split-char", { yPercent: 120 });
-      gsap.set(".hero-eyebrow, .hero-lead, .hero-scroll", {
-        autoAlpha: 0,
-        y: 26,
-      });
-      gsap.set(".hero-shape", { autoAlpha: 0, scale: 0.5 });
-
-      /* ---------- プリローダー: %カウンター + リング → ヒーロー開幕 ---------- */
-      const ring = document.getElementById(
-        "preloader-ring-fg"
-      ) as unknown as SVGCircleElement | null;
-      const count = document.getElementById("preloader-count");
-      const CIRC = 2 * Math.PI * 54;
-      if (ring) {
-        ring.style.strokeDasharray = `${CIRC}`;
-        ring.style.strokeDashoffset = `${CIRC}`;
-      }
-      const prog = { v: 0 };
-      gsap
-        .timeline({ onComplete: () => lenis.start() })
-        .to(prog, {
-          v: 100,
-          duration: 1.7,
-          ease: "power2.inOut",
-          onUpdate: () => {
-            if (count)
-              count.textContent = String(Math.round(prog.v)).padStart(3, "0");
-            if (ring)
-              ring.style.strokeDashoffset = String(CIRC * (1 - prog.v / 100));
-          },
-        })
-        .to(
-          "#preloader-inner",
-          { autoAlpha: 0, scale: 0.9, duration: 0.35, ease: "power2.in" },
-          "+=0.1"
-        )
-        .to(
-          "#preloader",
-          { yPercent: -100, duration: 0.85, ease: "power4.inOut" },
-          "<0.15"
-        )
-        .set("#preloader", { display: "none" })
-        .to(
-          ".site-nav",
-          { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out" },
-          "-=0.5"
-        )
-        .to(
-          ".hero-title .split-char",
-          {
-            yPercent: 0,
-            duration: 1.05,
-            ease: "power4.out",
-            stagger: 0.05,
-          },
-          "-=0.75"
-        )
-        .to(
-          ".hero-eyebrow",
-          { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" },
-          "-=0.9"
-        )
-        .to(
-          ".hero-lead",
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power3.out",
-            stagger: 0.09,
-          },
-          "-=0.6"
-        )
-        .to(
-          ".hero-shape",
-          {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.9,
-            ease: "back.out(1.7)",
-            stagger: 0.07,
-          },
-          "-=0.8"
-        )
-        .to(".hero-scroll", { autoAlpha: 1, y: 0, duration: 0.6 }, "-=0.4");
-
-      /* ---------- 浮遊シェイプ（内側）: ゆっくり漂う ---------- */
-      gsap.utils.toArray<HTMLElement>(".hero-shape").forEach((el, i) => {
-        gsap.to(el, {
-          y: () => gsap.utils.random(-30, 30),
-          x: () => gsap.utils.random(-22, 22),
-          rotation: () => gsap.utils.random(-16, 16),
-          duration: gsap.utils.random(3.2, 5.4),
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-          repeatRefresh: true,
-          delay: i * 0.25,
-        });
-      });
-
-      /* ---------- マウスパララックス（外側ラッパー） ---------- */
-      const wraps = gsap.utils
-        .toArray<HTMLElement>(".hero-shape-wrap")
-        .map((el) => ({
-          depth: parseFloat(el.dataset.depth ?? "0.08"),
-          qx: gsap.quickTo(el, "x", { duration: 0.9, ease: "power3.out" }),
-          qy: gsap.quickTo(el, "y", { duration: 0.9, ease: "power3.out" }),
-        }));
-      const onMouse = (e: MouseEvent) => {
-        const dx = e.clientX - window.innerWidth / 2;
-        const dy = e.clientY - window.innerHeight / 2;
-        for (const w of wraps) {
-          w.qx(dx * w.depth);
-          w.qy(dy * w.depth);
-        }
-      };
-      window.addEventListener("mousemove", onMouse, { passive: true });
-      removers.push(() => window.removeEventListener("mousemove", onMouse));
-
-      /* ---------- ヒーローのスクロールアウト ---------- */
-      gsap.to(".hero-title", {
-        yPercent: -14,
-        autoAlpha: 0.25,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-      } // hasIntro（プリローダー・ヒーロー関連はトップページのみ）
 
       /* ---------- 見出しの文字分割リベール ---------- */
       gsap.utils

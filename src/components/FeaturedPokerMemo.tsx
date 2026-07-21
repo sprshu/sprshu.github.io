@@ -1,4 +1,5 @@
 import { asset } from "@/lib/base";
+import { LINKS } from "@/lib/links";
 
 // 代表作: App Store公開済みのPokerMemoDB。トップとWorks一覧の両方で使う
 export default function FeaturedPokerMemo() {
@@ -6,7 +7,7 @@ export default function FeaturedPokerMemo() {
     <a
       className="work-featured"
       data-reveal
-      href="https://apps.apple.com/jp/app/pokermemodb/id6784554500"
+      href={LINKS.pokerMemoAppStore}
       target="_blank"
       rel="noopener"
     >

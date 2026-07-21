@@ -1,33 +1,27 @@
-import SplitChars from "./SplitChars";
+import Section from "./Section";
+import SectionHeader from "./SectionHeader";
 import FeaturedPokerMemo from "./FeaturedPokerMemo";
 import { asset } from "@/lib/base";
+import { IOS_WORK_COUNT, WEB_WORK_COUNT } from "@/data/works";
 
 // トップページ用: 代表作（PokerMemoDB）＋Works一覧ページへの導線
 export default function WorksTeaser() {
   return (
-    <section className="section" id="works">
-      <div className="ghost-word" data-ghost aria-hidden="true">
-        Works
-      </div>
+    <Section id="works" ghost="Works">
       <div className="wrap">
-        <div className="section-head">
-          <h2 className="section-title" data-split-heading>
-            <SplitChars text="Works" />
-          </h2>
-          <span className="section-title-ja mono-label">制作実績</span>
-        </div>
+        <SectionHeader title="Works" subtitle="制作実績" />
 
         <FeaturedPokerMemo />
 
         <div className="works-cta-row" data-reveal>
           <span className="works-cta-note mono-label">
-            iOSアプリ 6作品 / Web制作 4作品を掲載中
+            iOSアプリ {IOS_WORK_COUNT}作品 / Web制作 {WEB_WORK_COUNT}作品を掲載中
           </span>
           <a className="hero-cta" href={asset("/works/")} data-magnetic>
             全ての制作実績を見る →
           </a>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

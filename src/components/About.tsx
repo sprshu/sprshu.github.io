@@ -1,4 +1,5 @@
-import SplitChars from "./SplitChars";
+import Section from "./Section";
+import SectionHeader from "./SectionHeader";
 
 const STRENGTHS = [
   "講師経験あり",
@@ -34,17 +35,9 @@ const COMMITMENTS = [
 
 export default function About() {
   return (
-    <section className="section" id="about">
-      <div className="ghost-word" data-ghost aria-hidden="true">
-        About
-      </div>
+    <Section id="about" ghost="About">
       <div className="wrap">
-        <div className="section-head">
-          <h2 className="section-title" data-split-heading>
-            <SplitChars text="About" />
-          </h2>
-          <span className="section-title-ja mono-label">わたしについて</span>
-        </div>
+        <SectionHeader title="About" subtitle="わたしについて" />
 
         <div className="about-grid">
           <div className="about-copy" data-reveal>
@@ -94,6 +87,6 @@ export default function About() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
