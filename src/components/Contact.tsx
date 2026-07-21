@@ -1,20 +1,12 @@
-import SplitChars from "./SplitChars";
+import Section from "./Section";
+import SectionHeader from "./SectionHeader";
+import { LINKS } from "@/lib/links";
 
 export default function Contact() {
   return (
-    <section className="section contact" id="contact">
-      <div className="ghost-word" data-ghost aria-hidden="true">
-        Contact
-      </div>
+    <Section id="contact" ghost="Contact" className="contact">
       <div className="wrap">
-        <div
-          className="section-head"
-          style={{ justifyContent: "center" }}
-        >
-          <h2 className="section-title" data-split-heading>
-            <SplitChars text="Contact" />
-          </h2>
-        </div>
+        <SectionHeader title="Contact" className="section-head--center" />
         <p className="contact-lead" data-reveal>
           お仕事のご相談、お気軽にどうぞ。
         </p>
@@ -22,7 +14,7 @@ export default function Contact() {
           className="contact-cta"
           data-reveal
           data-magnetic
-          href="https://x.com/bertWithYou"
+          href={LINKS.x}
           target="_blank"
           rel="noopener"
         >
@@ -32,7 +24,7 @@ export default function Contact() {
         <div className="contact-links" data-reveal>
           <a
             className="contact-link"
-            href="https://github.com/sprshu"
+            href={LINKS.github}
             target="_blank"
             rel="noopener"
           >
@@ -40,7 +32,7 @@ export default function Contact() {
           </a>
           <a
             className="contact-link"
-            href="https://x.com/bertWithYou"
+            href={LINKS.x}
             target="_blank"
             rel="noopener"
           >
@@ -48,6 +40,6 @@ export default function Contact() {
           </a>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -398,6 +398,9 @@ html:not(.js) .preloader {
   gap: 16px;
   margin-bottom: clamp(40px, 6vw, 72px);
 }
+.section-head--center {
+  justify-content: center;
+}
 .section-title {
   margin: 0;
   font-family: var(--font-d);

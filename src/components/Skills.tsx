@@ -1,4 +1,5 @@
-import SplitChars from "./SplitChars";
+import Section from "./Section";
+import SectionHeader from "./SectionHeader";
 
 const ROWS: { items: string[]; reverse?: boolean }[] = [
   {
@@ -63,19 +64,9 @@ function MarqueeRow({
 
 export default function Skills() {
   return (
-    <section className="section" id="skills">
-      <div className="ghost-word" data-ghost aria-hidden="true">
-        Skills
-      </div>
+    <Section id="skills" ghost="Skills">
       <div className="wrap">
-        <div className="section-head">
-          <h2 className="section-title" data-split-heading>
-            <SplitChars text="Skills" />
-          </h2>
-          <span className="section-title-ja mono-label">
-            スキル・技術スタック
-          </span>
-        </div>
+        <SectionHeader title="Skills" subtitle="スキル・技術スタック" />
       </div>
 
       <div className="skills-rows" data-reveal>
@@ -89,6 +80,6 @@ export default function Skills() {
           シンプルさを優先した技術選定。モダンなWeb技術を中心に、必要なものを過不足なく。AIを取り入れ、設計から実装までを効率よく進めます。
         </p>
       </div>
-    </section>
+    </Section>
   );
 }
